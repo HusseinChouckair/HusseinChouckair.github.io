@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hussein Shkeir – Ingénieur systèmes embarqués & FPGA</title>
+<meta name="description" content="Portfolio de Hussein Shkeir : systèmes embarqués, FPGA (VHDL, Nios II), communication série, vision par ordinateur, IA. Recherche un stage de 3-4 mois.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e8edf2;--panel:#f6f8fa;--ink:#12233a;--mute:#52627a;--line:#c5d0dc;--sig:#1b4fe0;--amber:#c77d00;--gh:#12233a}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1a2b;--panel:#15253b;--ink:#e6edf6;--mute:#9db0c7;--line:#2a3d57;--sig:#6f95ff;--amber:#f2b02e;--gh:#e6edf6}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:var(--sig)}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+header.nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+.nav b{font:800 18px "Bricolage Grotesque",sans-serif}
+.nav nav a{margin-left:20px;color:var(--ink);text-decoration:none;font-size:15px}
+.nav nav a:hover{color:var(--sig)}
+.hero{padding:72px 0 48px}
+.hero h1{font-size:clamp(44px,8vw,88px);font-weight:800;letter-spacing:-.03em}
+.hero .role{font:500 clamp(19px,2.6vw,26px)/1.35 "Bricolage Grotesque",sans-serif;margin:20px 0 12px;max-width:720px}
+.hero p{max-width:640px;color:var(--mute);margin:0 0 28px}
+.btn{display:inline-block;padding:12px 22px;border-radius:6px;background:var(--sig);color:#fff;text-decoration:none;font-weight:500;margin:0 10px 10px 0}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.scope{margin-top:44px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
+.scope canvas{width:100%;height:240px;display:block}
+.ctl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px;font-size:15px}
+.ctl input{flex:1;min-width:160px;accent-color:var(--sig)}
+.ctl output{font-variant-numeric:tabular-nums;color:var(--mute)}
+.cap{font-size:14px;color:var(--mute);margin:10px 0 0}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section>.wrap>h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:8px;letter-spacing:-.02em}
+.sub{color:var(--mute);max-width:620px;margin:0 0 28px}
+details.proj{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+details.proj summary{cursor:pointer;list-style:none;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:4px 16px}
+details.proj summary::-webkit-details-marker{display:none}
+details.proj summary h3{font-size:22px}
+details.proj summary .when{color:var(--amber);font-weight:500;font-size:15px;grid-row:1}
+details.proj summary .pitch{grid-column:1/-1;color:var(--mute);font-size:16px}
+details.proj summary::after{content:"+";grid-column:2;grid-row:2;font:700 26px "Bricolage Grotesque";color:var(--sig);align-self:center}
+details[open].proj summary::after{content:"−"}
+.body{padding:0 22px 22px;border-top:1px solid var(--line)}
+.body h4{font:700 16px "Bricolage Grotesque";margin:18px 0 6px}
+.body ul{margin:0;padding-left:20px}.body li{margin:4px 0}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tags span{border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:14px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.card h3{font-size:18px;margin-bottom:8px}.card p{margin:0;color:var(--mute);font-size:15.5px}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
+.tl li{padding:0 0 26px 22px;position:relative}
+.tl li::before{content:"";position:absolute;left:-7px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--sig)}
+.tl .d{color:var(--amber);font-weight:500;font-size:15px}.tl h3{font-size:20px;margin:2px 0}.tl p{margin:2px 0 0;color:var(--mute)}
+.contact a.big{font:700 clamp(20px,4vw,34px) "Bricolage Grotesque";word-break:break-all}
+footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
+@media(max-width:600px){.nav nav a{margin-left:12px;font-size:14px}.nav nav a.hide{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap"><b>H. Shkeir</b>
+<nav><a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#parcours" class="hide">Parcours</a><a href="#contact">Contact</a></nav></div></header>
+ 
+<main>
+<div class="wrap hero" id="top">
+<h1>Hussein Shkeir</h1>
+<p class="role">Ingénieur en électronique et systèmes embarqués : du VHDL sur FPGA jusqu'à l'IA embarquée.</p>
+<p>Double diplôme d'ingénieur à Polytech Paris-Saclay (électronique et systèmes embarqués) et en télécommunications à l'Université Libanaise. Je recherche un stage de 3 à 4 mois en systèmes embarqués.</p>
+<a class="btn" href="cv.pdf">Télécharger mon CV</a><a class="btn alt" href="#contact">Me contacter</a>
+ 
+<div class="scope">
+<canvas id="cv" aria-label="Signal sinusoïdal reconstitué par un convertisseur numérique-analogique"></canvas>
+<div class="ctl"><label for="n">Échantillons par période</label><input id="n" type="range" min="4" max="64" value="25"><output id="o"></output></div>
+<p class="cap">Démonstration tirée d'un de mes projets : un Nios II génère une sinusoïde de 500 µs sur un CNA, à partir d'une table de valeurs et d'une interruption timer. Plus on échantillonne, plus le signal est fidèle.</p>
+</div>
+</div>
+ 
+<section id="projets"><div class="wrap">
+<h2>Projets</h2>
+<p class="sub">Systèmes embarqués, conception numérique, communication série, vision et logiciel concurrent. Cliquez sur un projet pour le détail.</p>
+ 
+<details class="proj" open><summary><span class="when">2024 – 2025</span><h3>Présentation intelligente pilotée par gestes</h3><span class="pitch">Interaction mains libres en temps réel, avec une caméra qui suit le présentateur.</span></summary>
+<div class="body">
+<h4>Le système</h4>
+<ul>
+<li>Système de présentation piloté par gestes de la main, développé en Python avec OpenCV et le module HandTrackingModule de cvzone.</li>
+<li>Commandes en temps réel : navigation entre diapositives, annotation à l'écran, gomme, lecture vidéo et réglage du volume.</li>
+<li>Enregistrement audio et vidéo synchronisé de la présentation.</li>
+<li>Gestion audio avec PyAudio, et contrôle du volume système avec Pycaw.</li>
+<li>Suivi de visage sur Raspberry Pi : si l'orateur sort du champ de la caméra, celle-ci se recentre automatiquement. Il n'a pas à la repositionner et garde l'usage des gestes.</li>
+</ul>
+<div class="tags"><span>Python</span><span>OpenCV</span><span>cvzone</span><span>Raspberry Pi</span><span>PyAudio</span><span>Pycaw</span></div>
+</div></details>
+ 
+<details class="proj"><summary><span class="when">Septembre 2026</span><h3>Plateforme de systèmes embarqués sur FPGA</h3><span class="pitch">Processeur Nios II sur Cyclone II, périphériques en VHDL et logiciel C temps réel.</span></summary>
+<div class="body">
+<h4>Conception matérielle</h4>
+<ul>
+<li>Système sur puce assemblé sous Qsys autour d'un processeur Nios II et du bus Avalon : SDRAM, SRAM, mémoire embarquée, ports PIO, timers et UART.</li>
+<li>Séquenceur de motifs en VHDL (machine à états et table de motifs), cadencé depuis l'horloge 50 MHz avec un compteur de temporisation à 250 ms.</li>
+<li>Module VHDL de transcodage hexadécimal vers afficheurs 7 segments, qui décharge le processeur du décodage.</li>
+<li>Automate unique pilotant en VHDL un CNA et un CAN : écriture, lancement de conversion et lecture du résultat selon les chronogrammes des composants.</li>
+<li>Interface clavier matriciel avec ports d'entrée et de sortie séparés et gestion du niveau dominant et récessif.</li>
+</ul>
+<h4>Logiciel embarqué</h4>
+<ul>
+<li>Pilotes en C par accès mappé en mémoire, avec contournement du cache de données du Nios II.</li>
+<li>Interruptions : timer à 250 ms, détection de changement sur les interrupteurs, configuration des registres de contrôle du processeur.</li>
+<li>Générateur de signal sinusoïdal : 25 échantillons par période de 500 µs, rythmés par l'interruption d'un timer matériel.</li>
+<li>Mesure de performance au tick près (20 ns) pour comparer l'affichage logiciel, l'affichage matériel et la console.</li>
+</ul>
+<div class="tags"><span>C</span><span>VHDL</span><span>FPGA DE1</span><span>Nios II</span><span>Qsys</span><span>Quartus II</span><span>Avalon</span><span>Interruptions</span><span>CAN / CNA</span></div>
+</div></details>
+ 
+<details class="proj"><summary><span class="when">Octobre 2026</span><h3>Acquisition de données et communication série</h3><span class="pitch">Bus I²C émulé par logiciel, liaison UART et supervision graphique de température.</span></summary>
+<div class="body">
+<ul>
+<li>Contrôleur I²C émulé en C sur deux broches d'un port E/S (start, stop, écriture, lecture), avec les délais du protocole respectés grâce au timer matériel.</li>
+<li>Acquisition de la température du capteur MCP9808 et conversion de la virgule fixe vers le BCD pour l'affichage.</li>
+<li>Liaison UART/RS232 avec l'écran intelligent DIABLO16, commandée par une bibliothèque de fonctions : effacement, cercles pleins, gestion des couleurs.</li>
+<li>Courbe de température en temps réel sur l'écran 480×272, avec une mesure toutes les 500 ms, une échelle de 10 à 50 °C et un effacement automatique en fin d'axe.</li>
+<li>Saisie au clavier pour changer la couleur d'affichage, avec traces des mesures sur la console.</li>
+</ul>
+<div class="tags"><span>UART / RS232</span><span>I²C</span><span>MCP9808</span><span>DIABLO16</span><span>Timer</span><span>C embarqué</span></div>
+</div></details>
+ 
+<details class="proj"><summary><span class="when">2026</span><h3>Agent IA de santé sous Docker</h3><span class="pitch">Assistant d'aide à l'orientation, avec outils typés, mémoire et garde-fous de sécurité.</span></summary>
+<div class="body">
+<ul>
+<li>Agent spécialisé qui répond à partir d'une base de connaissances structurée (JSON, CSV ou SQLite), sans inventer de réponse.</li>
+<li>Au moins quatre outils typés : information, analyse, action et rapport. Les arguments sont validés avant exécution.</li>
+<li>Mémoire de conversation et état de tâche explicite : intention, champs manquants, confirmation en attente, dernier résultat d'outil.</li>
+<li>Recommandations prudentes : incertitude signalée, source citée, orientation vers un professionnel en cas de risque.</li>
+<li>Routage avec repli déterministe, nombre d'itérations borné, confirmation avant toute action sensible et journal des appels d'outils.</li>
+<li>Interface web livrée par Docker, avec une suite d'au moins 20 conversations de test.</li>
+</ul>
+<div class="tags"><span>Python</span><span>LLM</span><span>Agents et outils</span><span>Docker</span><span>SQLite</span><span>Sécurité</span></div>
+</div></details>
+ 
+<details class="proj"><summary><span class="when">2026</span><h3>Application concurrente en Java 21</h3><span class="pitch">Un système qui reste correct, borné et observable sous charge et en cas de panne.</span></summary>
+<div class="body">
+<ul>
+<li>Point d'entrée concurrent, pools de threads dimensionnés et files bornées avec contre-pression.</li>
+<li>Protection de l'état partagé, pipeline asynchrone avec CompletableFuture, délais d'attente et chemins de repli.</li>
+<li>Métriques de débit, latence et profondeur de file, avec arrêt propre du service.</li>
+<li>Frontière réseau avec sérialisation, traçage, idempotence et injection de pannes.</li>
+</ul>
+<div class="tags"><span>Java 21</span><span>Concurrence</span><span>ExecutorService</span><span>CompletableFuture</span><span>Gradle</span></div>
+</div></details>
+ 
+<details class="proj"><summary><span class="when">Juillet – septembre 2025</span><h3>Stage full-stack, Integrated Digital Systems</h3><span class="pitch">Système de salle intelligente avec API REST et architecture MVC.</span></summary>
+<div class="body">
+<ul>
+<li>Développement full-stack avec HTML, CSS, JavaScript, C#, PHP, React.js, Vue.js et Laravel.</li>
+<li>Système de salle intelligente : base SQL, API REST et architecture MVC.</li>
+<li>Git et GitHub, tests, débogage et sécurité applicative. Attestation et lettre de recommandation obtenues.</li>
+</ul>
+<div class="tags"><span>React.js</span><span>Vue.js</span><span>Laravel</span><span>C#</span><span>SQL</span><span>API REST</span></div>
+</div></details>
+ 
+<p class="sub">Autres réalisations : base de données SQL de gestion de projets, traitement du signal et d'images numériques en C/C++ et MATLAB.</p>
+</div></section>
+ 
+<section id="competences"><div class="wrap">
+<h2>Compétences</h2><p class="sub">Ce que j'ai utilisé dans mes projets.</p>
+<div class="grid">
+<div class="card"><h3>Systèmes embarqués</h3><p>C/C++, interruptions, timers, UART/RS232, I²C, programmation concurrente, accès aux registres et à la mémoire.</p></div>
+<div class="card"><h3>FPGA et conception numérique</h3><p>VHDL, Nios II, bus Avalon, Qsys, Quartus II, machines à états finis, PIO, CAN et CNA.</p></div>
+<div class="card"><h3>Vision et IA</h3><p>Python, OpenCV, Raspberry Pi, agents IA et apprentissage automatique, traitement du signal et d'images.</p></div>
+<div class="card"><h3>Logiciel</h3><p>Java 21, C#, SQL, JavaScript, PHP, React.js, Vue.js, Laravel, Git/GitHub.</p></div>
+<div class="card"><h3>Outils</h3><p>MATLAB, Advanced Design System, Proteus 8, VS Code, AutoCAD, Docker.</p></div>
+<div class="card"><h3>Langues</h3><p>Arabe (natif), anglais (courant), français (intermédiaire avancé).</p></div>
+</div></div></section>
+ 
+<section id="parcours"><div class="wrap">
+<h2>Parcours</h2><p class="sub">Formation d'ingénieur et expérience professionnelle.</p>
+<ul class="tl">
+<li><span class="d">En cours</span><h3>Cycle ingénieur, Électronique et systèmes embarqués</h3><p>Polytech Paris-Saclay, Orsay. Niveau Bac+4.</p></li>
+<li><span class="d">Juillet – septembre 2025</span><h3>Stagiaire développeur full-stack</h3><p>Integrated Digital Systems (IDS).</p></li>
+<li><span class="d">Diplôme</span><h3>Cycle ingénieur, Télécommunications</h3><p>Université Libanaise, Faculté d'ingénierie. Niveau Bac+5.</p></li>
+</ul></div></section>
+ 
+<section id="contact" class="contact"><div class="wrap">
+<h2>Travaillons ensemble</h2>
+<p class="sub">Je cherche un stage de 3 à 4 mois en systèmes embarqués. Écrivez-moi, je réponds vite.</p>
+<a class="big" href="mailto:hussein.shkeir@universite-paris-saclay.fr">hussein.shkeir@universite-paris-saclay.fr</a>
+<p><a href="https://github.com/HusseinChouckair">GitHub</a> · <a href="https://www.linkedin.com/in/TON-PROFIL/">LinkedIn</a> · <a href="cv.pdf">CV en PDF</a></p>
+</div></section>
+</main>
+<footer><div class="wrap">© 2026 Hussein Shkeir</div></footer>
+ 
+<script>
+const c=document.getElementById('cv'),x=c.getContext('2d'),s=document.getElementById('n'),o=document.getElementById('o');
+function col(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function draw(){
+const r=devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*r;c.height=h*r;x.setTransform(r,0,0,r,0,0);
+const n=+s.value,p=24,mid=h/2,A=h/2-p,pw=w-2*p;o.textContent=n+' pts · '+(500/n).toFixed(1)+' µs/pt';
+x.clearRect(0,0,w,h);x.lineWidth=1;x.strokeStyle=col('--line');
+for(let i=0;i<=4;i++){x.beginPath();x.moveTo(p,p+i*(h-2*p)/4);x.lineTo(w-p,p+i*(h-2*p)/4);x.stroke()}
+x.setLineDash([5,5]);x.strokeStyle=col('--mute');x.beginPath();
+for(let i=0;i<=pw;i++){const y=mid-A*Math.sin(2*Math.PI*i/pw);i?x.lineTo(p+i,y):x.moveTo(p+i,y)}x.stroke();x.setLineDash([]);
+x.strokeStyle=col('--sig');x.lineWidth=2.5;x.beginPath();
+for(let k=0;k<n;k++){const y=mid-A*Math.sin(2*Math.PI*k/n),x0=p+pw*k/n,x1=p+pw*(k+1)/n;k?x.lineTo(x0,y):x.moveTo(x0,y);x.lineTo(x1,y)}
+x.stroke();x.fillStyle=col('--amber');
+for(let k=0;k<n;k++){x.beginPath();x.arc(p+pw*k/n,mid-A*Math.sin(2*Math.PI*k/n),3,0,7);x.fill()}
+}
+s.addEventListener('input',draw);addEventListener('resize',draw);
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',draw);draw();
+</script>
+</body>
+</html>
+ 
