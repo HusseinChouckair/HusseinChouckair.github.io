@@ -36,14 +36,21 @@ header.nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid va
 section{padding:56px 0;border-top:1px solid var(--line)}
 section>.wrap>h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:8px;letter-spacing:-.02em}
 .sub{color:var(--mute);max-width:620px;margin:0 0 28px}
-details.proj{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
-details.proj summary{cursor:pointer;list-style:none;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:4px 16px}
+details.proj{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--dom,var(--sig));border-radius:10px;margin-bottom:14px}
+details.proj summary{cursor:pointer;list-style:none;padding:18px 22px;display:grid;grid-template-columns:1fr auto 36px;gap:2px 16px;align-items:center}
 details.proj summary::-webkit-details-marker{display:none}
-details.proj summary h3{font-size:22px}
-details.proj summary .when{color:var(--amber);font-weight:500;font-size:15px;grid-row:1}
-details.proj summary .pitch{grid-column:1/-1;color:var(--mute);font-size:16px}
-details.proj summary::after{content:"+";grid-column:2;grid-row:2;font:700 26px "Bricolage Grotesque";color:var(--sig);align-self:center}
-details[open].proj summary::after{content:"−"}
+details.proj summary h3{font-size:22px;grid-column:1;text-align:left}
+details.proj summary .when{grid-column:2;grid-row:1;color:var(--amber);font-weight:500;font-size:15px;text-align:right;white-space:nowrap}
+details.proj summary .pitch{grid-column:1/3;color:var(--mute);font-size:15.5px}
+details.proj summary::after{content:"−";grid-column:3;grid-row:1/3;justify-self:end;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--sig);color:var(--sig);display:grid;place-items:center;font:700 22px/1 "Bricolage Grotesque"}
+details.proj:not([open]) summary::after{content:"+"}
+.dom{display:block;font-size:13px;color:var(--dom,var(--sig));font-weight:500;margin-bottom:2px}
+.tools{display:flex;gap:10px;margin:0 0 18px}.tools button{font:inherit;font-size:14px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.tools button:hover{border-color:var(--sig);color:var(--sig)}
+#bar{position:fixed;top:0;left:0;height:3px;background:var(--amber);width:0;z-index:9}
+.e{--dom:#1b4fe0}.sg{--dom:#c77d00}.v{--dom:#0e8a6b}.l{--dom:#7a4bd1}.a{--dom:#d1456b}
+@media(prefers-color-scheme:dark){.e{--dom:#6f95ff}.sg{--dom:#f2b02e}.v{--dom:#3ed1a8}.l{--dom:#b496f2}.a{--dom:#ff7fa0}}
+@media(max-width:600px){details.proj summary{grid-template-columns:1fr 36px}details.proj summary .when{grid-column:1;grid-row:2;text-align:left}details.proj summary .pitch{grid-column:1;grid-row:3}details.proj summary::after{grid-column:2;grid-row:1}}
 .body{padding:0 22px 22px;border-top:1px solid var(--line)}
 .body h4{font:700 16px "Bricolage Grotesque";margin:18px 0 6px}
 .body ul{margin:0;padding-left:20px}.body li{margin:4px 0}
@@ -63,109 +70,50 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 </style>
 </head>
 <body>
-<header class="nav"><div class="wrap"><b>H. Shkeir</b>
+<div id="bar"></div><header class="nav"><div class="wrap"><b>H. Shkeir</b>
 <nav><a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#parcours" class="hide">Parcours</a><a href="#contact">Contact</a></nav></div></header>
- 
+
 <main>
 <div class="wrap hero" id="top">
 <h1>Hussein Shkeir</h1>
-<p class="role">Ingénieur en électronique et systèmes embarqués : du VHDL sur FPGA jusqu'à l'IA embarquée.</p>
+<p class="role">Ingénieur en électronique et systèmes embarqués, avec une formation complémentaire en télécommunications.</p>
 <p>Double diplôme d'ingénieur à Polytech Paris-Saclay (électronique et systèmes embarqués) et en télécommunications à l'Université Libanaise. Je recherche un stage de 3 à 4 mois en systèmes embarqués.</p>
 <a class="btn" href="cv.pdf">Télécharger mon CV</a><a class="btn alt" href="#contact">Me contacter</a>
- 
+
 <div class="scope">
 <canvas id="cv" aria-label="Signal sinusoïdal reconstitué par un convertisseur numérique-analogique"></canvas>
 <div class="ctl"><label for="n">Échantillons par période</label><input id="n" type="range" min="4" max="64" value="25"><output id="o"></output></div>
 <p class="cap">Démonstration tirée d'un de mes projets : un Nios II génère une sinusoïde de 500 µs sur un CNA, à partir d'une table de valeurs et d'une interruption timer. Plus on échantillonne, plus le signal est fidèle.</p>
 </div>
 </div>
- 
+
 <section id="projets"><div class="wrap">
 <h2>Projets</h2>
-<p class="sub">Systèmes embarqués, conception numérique, communication série, vision et logiciel concurrent. Cliquez sur un projet pour le détail.</p>
- 
-<details class="proj" open><summary><span class="when">2024 – 2025</span><h3>Présentation intelligente pilotée par gestes</h3><span class="pitch">Interaction mains libres en temps réel, avec une caméra qui suit le présentateur.</span></summary>
-<div class="body">
-<h4>Le système</h4>
-<ul>
-<li>Système de présentation piloté par gestes de la main, développé en Python avec OpenCV et le module HandTrackingModule de cvzone.</li>
-<li>Commandes en temps réel : navigation entre diapositives, annotation à l'écran, gomme, lecture vidéo et réglage du volume.</li>
-<li>Enregistrement audio et vidéo synchronisé de la présentation.</li>
-<li>Gestion audio avec PyAudio, et contrôle du volume système avec Pycaw.</li>
-<li>Suivi de visage sur Raspberry Pi : si l'orateur sort du champ de la caméra, celle-ci se recentre automatiquement. Il n'a pas à la repositionner et garde l'usage des gestes.</li>
-</ul>
-<div class="tags"><span>Python</span><span>OpenCV</span><span>cvzone</span><span>Raspberry Pi</span><span>PyAudio</span><span>Pycaw</span></div>
-</div></details>
- 
-<details class="proj"><summary><span class="when">Septembre 2026</span><h3>Plateforme de systèmes embarqués sur FPGA</h3><span class="pitch">Processeur Nios II sur Cyclone II, périphériques en VHDL et logiciel C temps réel.</span></summary>
-<div class="body">
-<h4>Conception matérielle</h4>
-<ul>
-<li>Système sur puce assemblé sous Qsys autour d'un processeur Nios II et du bus Avalon : SDRAM, SRAM, mémoire embarquée, ports PIO, timers et UART.</li>
-<li>Séquenceur de motifs en VHDL (machine à états et table de motifs), cadencé depuis l'horloge 50 MHz avec un compteur de temporisation à 250 ms.</li>
-<li>Module VHDL de transcodage hexadécimal vers afficheurs 7 segments, qui décharge le processeur du décodage.</li>
-<li>Automate unique pilotant en VHDL un CNA et un CAN : écriture, lancement de conversion et lecture du résultat selon les chronogrammes des composants.</li>
-<li>Interface clavier matriciel avec ports d'entrée et de sortie séparés et gestion du niveau dominant et récessif.</li>
-</ul>
-<h4>Logiciel embarqué</h4>
-<ul>
-<li>Pilotes en C par accès mappé en mémoire, avec contournement du cache de données du Nios II.</li>
-<li>Interruptions : timer à 250 ms, détection de changement sur les interrupteurs, configuration des registres de contrôle du processeur.</li>
-<li>Générateur de signal sinusoïdal : 25 échantillons par période de 500 µs, rythmés par l'interruption d'un timer matériel.</li>
-<li>Mesure de performance au tick près (20 ns) pour comparer l'affichage logiciel, l'affichage matériel et la console.</li>
-</ul>
-<div class="tags"><span>C</span><span>VHDL</span><span>FPGA DE1</span><span>Nios II</span><span>Qsys</span><span>Quartus II</span><span>Avalon</span><span>Interruptions</span><span>CAN / CNA</span></div>
-</div></details>
- 
-<details class="proj"><summary><span class="when">Octobre 2026</span><h3>Acquisition de données et communication série</h3><span class="pitch">Bus I²C émulé par logiciel, liaison UART et supervision graphique de température.</span></summary>
-<div class="body">
-<ul>
-<li>Contrôleur I²C émulé en C sur deux broches d'un port E/S (start, stop, écriture, lecture), avec les délais du protocole respectés grâce au timer matériel.</li>
-<li>Acquisition de la température du capteur MCP9808 et conversion de la virgule fixe vers le BCD pour l'affichage.</li>
-<li>Liaison UART/RS232 avec l'écran intelligent DIABLO16, commandée par une bibliothèque de fonctions : effacement, cercles pleins, gestion des couleurs.</li>
-<li>Courbe de température en temps réel sur l'écran 480×272, avec une mesure toutes les 500 ms, une échelle de 10 à 50 °C et un effacement automatique en fin d'axe.</li>
-<li>Saisie au clavier pour changer la couleur d'affichage, avec traces des mesures sur la console.</li>
-</ul>
-<div class="tags"><span>UART / RS232</span><span>I²C</span><span>MCP9808</span><span>DIABLO16</span><span>Timer</span><span>C embarqué</span></div>
-</div></details>
- 
-<details class="proj"><summary><span class="when">2026</span><h3>Agent IA de santé sous Docker</h3><span class="pitch">Assistant d'aide à l'orientation, avec outils typés, mémoire et garde-fous de sécurité.</span></summary>
-<div class="body">
-<ul>
-<li>Agent spécialisé qui répond à partir d'une base de connaissances structurée (JSON, CSV ou SQLite), sans inventer de réponse.</li>
-<li>Au moins quatre outils typés : information, analyse, action et rapport. Les arguments sont validés avant exécution.</li>
-<li>Mémoire de conversation et état de tâche explicite : intention, champs manquants, confirmation en attente, dernier résultat d'outil.</li>
-<li>Recommandations prudentes : incertitude signalée, source citée, orientation vers un professionnel en cas de risque.</li>
-<li>Routage avec repli déterministe, nombre d'itérations borné, confirmation avant toute action sensible et journal des appels d'outils.</li>
-<li>Interface web livrée par Docker, avec une suite d'au moins 20 conversations de test.</li>
-</ul>
-<div class="tags"><span>Python</span><span>LLM</span><span>Agents et outils</span><span>Docker</span><span>SQLite</span><span>Sécurité</span></div>
-</div></details>
- 
-<details class="proj"><summary><span class="when">2026</span><h3>Application concurrente en Java 21</h3><span class="pitch">Un système qui reste correct, borné et observable sous charge et en cas de panne.</span></summary>
-<div class="body">
-<ul>
-<li>Point d'entrée concurrent, pools de threads dimensionnés et files bornées avec contre-pression.</li>
-<li>Protection de l'état partagé, pipeline asynchrone avec CompletableFuture, délais d'attente et chemins de repli.</li>
-<li>Métriques de débit, latence et profondeur de file, avec arrêt propre du service.</li>
-<li>Frontière réseau avec sérialisation, traçage, idempotence et injection de pannes.</li>
-</ul>
-<div class="tags"><span>Java 21</span><span>Concurrence</span><span>ExecutorService</span><span>CompletableFuture</span><span>Gradle</span></div>
-</div></details>
- 
-<details class="proj"><summary><span class="when">Juillet – septembre 2025</span><h3>Stage full-stack, Integrated Digital Systems</h3><span class="pitch">Système de salle intelligente avec API REST et architecture MVC.</span></summary>
-<div class="body">
-<ul>
-<li>Développement full-stack avec HTML, CSS, JavaScript, C#, PHP, React.js, Vue.js et Laravel.</li>
-<li>Système de salle intelligente : base SQL, API REST et architecture MVC.</li>
-<li>Git et GitHub, tests, débogage et sécurité applicative. Attestation et lettre de recommandation obtenues.</li>
-</ul>
-<div class="tags"><span>React.js</span><span>Vue.js</span><span>Laravel</span><span>C#</span><span>SQL</span><span>API REST</span></div>
-</div></details>
- 
-<p class="sub">Autres réalisations : base de données SQL de gestion de projets, traitement du signal et d'images numériques en C/C++ et MATLAB.</p>
+<p class="sub">Systèmes embarqués, traitement du signal, vision, logiciel et IA. Utilisez le bouton − pour réduire un projet.</p>
+
+<div class="tools"><button id="ca" type="button">Tout réduire</button><button id="ea" type="button">Tout développer</button></div>
+<details class="proj e" open><summary><h3><span class="dom">Embarqué et FPGA</span>Plateforme de systèmes embarqués sur FPGA</h3><span class="when">Septembre 2026</span><span class="pitch">Processeur Nios II sur Cyclone II, périphériques en VHDL et logiciel C temps réel.</span></summary>
+<div class="body"><ul><li>Système sur puce assemblé sous Qsys autour d'un processeur Nios II et du bus Avalon : SDRAM, SRAM, mémoire embarquée, ports PIO, timers et UART.</li><li>Séquenceur de motifs en VHDL (machine à états et table de motifs), cadencé par l'horloge 50 MHz avec un compteur de temporisation à 250 ms.</li><li>Module VHDL de transcodage hexadécimal vers afficheurs 7 segments, qui décharge le processeur du décodage.</li><li>Automate unique pilotant un CNA et un CAN en VHDL : écriture, lancement de conversion et lecture selon les chronogrammes des composants.</li><li>Interface clavier matriciel avec ports d'entrée et de sortie séparés, en respectant le niveau dominant et le niveau récessif.</li><li>Pilotes en C par accès mappé en mémoire, avec contournement du cache de données du Nios II.</li><li>Interruptions : timer à 250 ms et détection de changement sur les interrupteurs, avec configuration des registres de contrôle du processeur.</li><li>Générateur sinusoïdal : 25 échantillons par période de 500 µs, rythmés par l'interruption d'un timer matériel.</li><li>Mesure de performance au tick près (20 ns) pour comparer l'affichage logiciel, l'affichage matériel et la console.</li></ul><div class="tags"><span>C</span><span>VHDL</span><span>FPGA DE1</span><span>Nios II</span><span>Qsys</span><span>Quartus II</span><span>Avalon</span><span>Interruptions</span><span>CAN / CNA</span></div></div></details>
+<details class="proj e" open><summary><h3><span class="dom">Embarqué et communication</span>Acquisition de données et communication série</h3><span class="when">Octobre 2026</span><span class="pitch">Bus I²C émulé par logiciel, liaison UART et supervision graphique de température.</span></summary>
+<div class="body"><ul><li>Contrôleur I²C émulé en C sur deux broches d'un port E/S (start, stop, écriture, lecture), avec les délais du protocole respectés grâce au timer matériel.</li><li>Acquisition de la température du capteur MCP9808 et conversion de la virgule fixe vers le BCD pour l'affichage.</li><li>Liaison UART/RS232 avec l'écran intelligent DIABLO16, commandée par une bibliothèque de fonctions : effacement, cercles pleins, couleurs.</li><li>Courbe de température en temps réel sur l'écran 480×272 : une mesure toutes les 500 ms, échelle de 10 à 50 °C, effacement automatique en fin d'axe.</li><li>Changement de couleur d'affichage au clavier, avec traces des mesures sur la console.</li></ul><div class="tags"><span>UART / RS232</span><span>I²C</span><span>MCP9808</span><span>DIABLO16</span><span>Timer</span><span>C embarqué</span></div></div></details>
+<details class="proj sg" open><summary><h3><span class="dom">Traitement du signal</span>Synthèse de filtres numériques sous MATLAB</h3><span class="when">2026</span><span class="pitch">Méthode des fenêtres et méthodes fréquentielles, avec comparaison quantitative.</span></summary>
+<div class="body"><ul><li>Filtre passe-bas à réponse impulsionnelle finie (Fc = 10 kHz, Fe = 100 kHz) : échantillonnage d'un sinus cardinal, troncature à 2M+1 points et rendu causal.</li><li>Analyse de l'effet de la troncature : ondulations en bande passante, largeur de la bande de transition et pente de phase pour plusieurs valeurs de M.</li><li>Pondération par fenêtre de Hamming pour atténuer les oscillations, et étude de l'influence de la fréquence d'échantillonnage.</li><li>Filtre récursif du premier ordre obtenu par échantillonnage de la réponse impulsionnelle, puis par les méthodes d'Euler, des trapèzes et bilinéaire (Tustin).</li><li>Prise en compte de la distorsion de l'axe des fréquences par pré-déformation de la fréquence de coupure.</li><li>Comparaison des filtres sur les diagrammes de Bode, les réponses impulsionnelle et indicielle : gain statique, fréquence de coupure à −3 dB et pente d'atténuation.</li></ul><div class="tags"><span>MATLAB</span><span>Filtres RIF / RII</span><span>Transformée en z</span><span>Euler</span><span>Tustin</span><span>Fenêtrage</span></div></div></details>
+<details class="proj sg" open><summary><h3><span class="dom">Embarqué et traitement du signal</span>Chaîne de traitement numérique sur ATmega32</h3><span class="when">2026</span><span class="pitch">Acquisition, filtrage temps réel et conversion numérique-analogique en C.</span></summary>
+<div class="body"><ul><li>Chaîne complète sur microcontrôleur 8 bits ATmega32 (carte EasyAVR) : CAN interne, calcul en temps réel, puis CNA externe DAC0800 à 1 kHz d'échantillonnage.</li><li>Application d'un gain réglable avec saturation logicielle, validée sur les tensions positives et négatives.</li><li>Mesure du temps de calcul sur broches de sortie : virgule flottante contre entiers contre virgule fixe Q8.</li><li>Filtre passe-bas du premier ordre (K = 2, Fc = 50 Hz) par les méthodes d'Euler et bilinéaire, avec déduction de la fréquence d'échantillonnage maximale atteignable.</li><li>Réécriture du gain et du filtre en arithmétique entière et en virgule fixe pour réduire le temps de calcul par échantillon.</li><li>Validation à l'oscilloscope (gain, fréquence de coupure, pente atténuée, analyse FFT).</li></ul><div class="tags"><span>C embarqué</span><span>ATmega32</span><span>CAN / CNA</span><span>Virgule fixe Q8</span><span>Filtrage numérique</span><span>Atmel Studio</span></div></div></details>
+<details class="proj v" open><summary><h3><span class="dom">Vision par ordinateur</span>Vision pour la robotique en C++</h3><span class="when">2026 – 2027</span><span class="pitch">Filtrage, détection de points d'intérêt et classification sur images.</span></summary>
+<div class="body"><ul><li>Filtre gaussien séparable programmé de zéro, avec noyau entier, normalisation et traitement des bords par recalcul du noyau.</li><li>Comparaison de filtres passe-bas (moyenne, médian, Nagao, SNN, filtres alternés séquentiels) sous bruit gaussien et impulsionnel, mesurée par PSNR et SSIM.</li><li>Détecteur de coins de Harris : gradients, matrice de covariance, critère R et extraction des maxima locaux, avec test de robustesse au bruit et aux transformations géométriques.</li><li>Classification non supervisée par c-moyennes sur images couleur, utilisée pour la compression, avec courbes de PSNR selon le nombre de classes.</li><li>Mini-projets : comptage de doigts sur images de profondeur Kinect, reconnaissance de panneaux routiers, comptage de fragments de verre sur pare-brise, évalués par précision et rappel.</li></ul><div class="tags"><span>C++</span><span>Traitement d'images</span><span>Harris</span><span>c-moyennes</span><span>PSNR / SSIM</span><span>Morphologie mathématique</span></div></div></details>
+<details class="proj l" open><summary><h3><span class="dom">Logiciel concurrent</span>Application concurrente en Java 21</h3><span class="when">2026</span><span class="pitch">Un système qui reste correct, borné et observable sous charge et en cas de panne.</span></summary>
+<div class="body"><ul><li>Point d'entrée concurrent, pools de threads dimensionnés et files bornées avec contre-pression.</li><li>Protection de l'état partagé, pipeline asynchrone avec CompletableFuture, délais d'attente et chemins de repli.</li><li>Métriques de débit, latence et profondeur de file, avec arrêt propre du service.</li><li>Frontière réseau avec sérialisation, traçage, idempotence et injection de pannes.</li></ul><div class="tags"><span>Java 21</span><span>Concurrence</span><span>ExecutorService</span><span>CompletableFuture</span><span>Gradle</span></div></div></details>
+<details class="proj a" open><summary><h3><span class="dom">Intelligence artificielle</span>Agent IA de santé sous Docker</h3><span class="when">2026</span><span class="pitch">Assistant d'aide à l'orientation, avec outils typés, mémoire et garde-fous de sécurité.</span></summary>
+<div class="body"><ul><li>Agent spécialisé qui répond à partir d'une base de connaissances structurée (JSON, CSV ou SQLite), sans inventer de réponse.</li><li>Au moins quatre outils typés : information, analyse, action et rapport, avec validation des arguments avant exécution.</li><li>Mémoire de conversation et état de tâche explicite : intention, champs manquants, confirmation en attente, dernier résultat d'outil.</li><li>Recommandations prudentes : incertitude signalée, source citée, orientation vers un professionnel en cas de risque.</li><li>Routage avec repli déterministe, nombre d'itérations borné, confirmation avant toute action sensible et journal des appels d'outils.</li><li>Interface web livrée par Docker, testée sur au moins 20 conversations.</li></ul><div class="tags"><span>Python</span><span>LLM</span><span>Agents et outils</span><span>Docker</span><span>SQLite</span><span>Sécurité</span></div></div></details>
+<details class="proj v" open><summary><h3><span class="dom">Vision et embarqué</span>Présentation intelligente pilotée par gestes</h3><span class="when">2024 – 2025</span><span class="pitch">Interaction mains libres en temps réel, avec une caméra qui suit le présentateur.</span></summary>
+<div class="body"><ul><li>Présentation pilotée par gestes de la main, développée en Python avec OpenCV et le module HandTrackingModule de cvzone.</li><li>Commandes en temps réel : navigation entre diapositives, annotation à l'écran, gomme, lecture vidéo et réglage du volume.</li><li>Enregistrement audio et vidéo synchronisé de la présentation.</li><li>Gestion audio avec PyAudio et contrôle du volume système avec Pycaw.</li><li>Suivi de visage sur Raspberry Pi : si l'orateur sort du champ de la caméra, celle-ci se recentre automatiquement. Il garde l'usage des gestes sans la repositionner.</li></ul><div class="tags"><span>Python</span><span>OpenCV</span><span>cvzone</span><span>Raspberry Pi</span><span>PyAudio</span><span>Pycaw</span></div></div></details>
+<details class="proj l" open><summary><h3><span class="dom">Développement web</span>Stage full-stack, Integrated Digital Systems</h3><span class="when">Juillet – septembre 2025</span><span class="pitch">Système de salle intelligente avec API REST et architecture MVC.</span></summary>
+<div class="body"><ul><li>Développement full-stack avec HTML, CSS, JavaScript, C#, PHP, React.js, Vue.js et Laravel.</li><li>Système de salle intelligente : base SQL, API REST et architecture MVC.</li><li>Git et GitHub, tests, débogage et sécurité applicative. Attestation et lettre de recommandation obtenues.</li></ul><div class="tags"><span>React.js</span><span>Vue.js</span><span>Laravel</span><span>C#</span><span>SQL</span><span>API REST</span></div></div></details>
+<details class="proj l" open><summary><h3><span class="dom">Bases de données</span>Base de données SQL de gestion de projets</h3><span class="when">2024 – 2025</span><span class="pitch">Modélisation relationnelle pour piloter les projets, les équipes et les ressources d'une entreprise.</span></summary>
+<div class="body"><ul><li>Schéma relationnel qui relie clients, projets, tâches, employés et ressources, avec clés étrangères et contraintes d'intégrité.</li><li>Affectation des employés et des ressources aux projets, avec suivi des charges, des dates et de l'état d'avancement.</li><li>Requêtes SQL (jointures, agrégations, filtres) pour répondre aux questions de gestion : qui travaille sur quoi, quelles ressources sont libres, quels projets sont en retard.</li><li>Scripts de création, d'insertion et de test pour reconstruire la base de façon reproductible.</li></ul><div class="tags"><span>SQL</span><span>Modélisation</span><span>Jointures</span><span>Intégrité des données</span></div></div></details>
 </div></section>
- 
+
 <section id="competences"><div class="wrap">
 <h2>Compétences</h2><p class="sub">Ce que j'ai utilisé dans mes projets.</p>
 <div class="grid">
@@ -176,7 +124,7 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 <div class="card"><h3>Outils</h3><p>MATLAB, Advanced Design System, Proteus 8, VS Code, AutoCAD, Docker.</p></div>
 <div class="card"><h3>Langues</h3><p>Arabe (natif), anglais (courant), français (intermédiaire avancé).</p></div>
 </div></div></section>
- 
+
 <section id="parcours"><div class="wrap">
 <h2>Parcours</h2><p class="sub">Formation d'ingénieur et expérience professionnelle.</p>
 <ul class="tl">
@@ -184,16 +132,16 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 <li><span class="d">Juillet – septembre 2025</span><h3>Stagiaire développeur full-stack</h3><p>Integrated Digital Systems (IDS).</p></li>
 <li><span class="d">Diplôme</span><h3>Cycle ingénieur, Télécommunications</h3><p>Université Libanaise, Faculté d'ingénierie. Niveau Bac+5.</p></li>
 </ul></div></section>
- 
+
 <section id="contact" class="contact"><div class="wrap">
 <h2>Travaillons ensemble</h2>
 <p class="sub">Je cherche un stage de 3 à 4 mois en systèmes embarqués. Écrivez-moi, je réponds vite.</p>
 <a class="big" href="mailto:hussein.shkeir@universite-paris-saclay.fr">hussein.shkeir@universite-paris-saclay.fr</a>
-<p><a href="https://github.com/HusseinChouckair">GitHub</a> · <a href="https://www.linkedin.com/in/TON-PROFIL/">LinkedIn</a> · <a href="cv.pdf">CV en PDF</a></p>
+<p><a href="https://github.com/HusseinChouckair">GitHub</a> · <a href="https://www.linkedin.com/in/hussein-shkeir-437506357/">LinkedIn</a> · <a href="cv.pdf">CV en PDF</a></p>
 </div></section>
 </main>
 <footer><div class="wrap">© 2026 Hussein Shkeir</div></footer>
- 
+
 <script>
 const c=document.getElementById('cv'),x=c.getContext('2d'),s=document.getElementById('n'),o=document.getElementById('o');
 function col(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
@@ -211,7 +159,10 @@ for(let k=0;k<n;k++){x.beginPath();x.arc(p+pw*k/n,mid-A*Math.sin(2*Math.PI*k/n),
 }
 s.addEventListener('input',draw);addEventListener('resize',draw);
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',draw);draw();
+const D=document.querySelectorAll('details.proj');
+document.getElementById('ca').onclick=()=>D.forEach(d=>d.open=false);
+document.getElementById('ea').onclick=()=>D.forEach(d=>d.open=true);
+const B=document.getElementById('bar');addEventListener('scroll',()=>{B.style.width=100*scrollY/(document.documentElement.scrollHeight-innerHeight)+'%'},{passive:true});
 </script>
 </body>
 </html>
- 
