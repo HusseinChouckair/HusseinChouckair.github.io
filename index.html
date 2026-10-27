@@ -5,92 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hussein Shkeir – Ingénieur systèmes embarqués & FPGA</title>
 <meta name="description" content="Portfolio de Hussein Shkeir : systèmes embarqués, FPGA (VHDL, Nios II), communication série, vision par ordinateur, IA. Recherche un stage de 3-4 mois.">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('t')||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark')}catch(e){document.documentElement.dataset.theme='dark'}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#e8edf2;--panel:#f6f8fa;--ink:#12233a;--mute:#52627a;--line:#c5d0dc;--sig:#1b4fe0;--amber:#c77d00;--gh:#12233a}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1a2b;--panel:#15253b;--ink:#e6edf6;--mute:#9db0c7;--line:#2a3d57;--sig:#6f95ff;--amber:#f2b02e;--gh:#e6edf6}}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif}
-h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+:root{--bg:#f2f5fb;--bg2:#e6ecf7;--panel:rgba(255,255,255,.72);--ink:#0e1b33;--mute:#4f6180;--line:rgba(14,27,51,.14);--sig:#2250e6;--amber:#b86e00;--cy:#0a9d84;--glow:rgba(34,80,230,.14);--sh:0 10px 30px rgba(20,40,90,.10)}
+:root[data-theme=dark]{--bg:#060c18;--bg2:#0b1426;--panel:rgba(255,255,255,.045);--ink:#e8eefb;--mute:#93a4c0;--line:rgba(160,185,235,.16);--sig:#6b94ff;--amber:#ffb347;--cy:#35e0c2;--glow:rgba(107,148,255,.16);--sh:0 14px 40px rgba(0,0,0,.45)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif;overflow-x:hidden;transition:background .4s,color .4s}
+body::before{content:"";position:fixed;inset:-20%;z-index:-3;pointer-events:none;background:radial-gradient(40% 40% at 15% 20%,var(--glow),transparent 70%),radial-gradient(35% 35% at 85% 30%,rgba(53,224,194,.10),transparent 70%),radial-gradient(45% 45% at 60% 90%,rgba(255,179,71,.08),transparent 70%);animation:aur 22s ease-in-out infinite alternate}
+body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 30%,#000 10%,transparent 75%)}
+@keyframes aur{to{transform:translate3d(3%,4%,0) scale(1.1)}}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.08;margin:0}
 a{color:var(--sig)}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
-.wrap{max-width:980px;margin:0 auto;padding:0 24px}
-header.nav{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
-.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
-.nav b{font:800 18px "Bricolage Grotesque",sans-serif}
-.nav nav a{margin-left:20px;color:var(--ink);text-decoration:none;font-size:15px}
-.nav nav a:hover{color:var(--sig)}
-.hero{padding:72px 0 48px}
-.hero h1{font-size:clamp(44px,8vw,88px);font-weight:800;letter-spacing:-.03em}
-.hero .role{font:500 clamp(19px,2.6vw,26px)/1.35 "Bricolage Grotesque",sans-serif;margin:20px 0 12px;max-width:720px}
-.hero p{max-width:640px;color:var(--mute);margin:0 0 28px}
-.btn{display:inline-block;padding:12px 22px;border-radius:6px;background:var(--sig);color:#fff;text-decoration:none;font-weight:500;margin:0 10px 10px 0}
-.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
-.scope{margin-top:44px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px}
-.scope canvas{width:100%;height:240px;display:block}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+#bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--sig),var(--cy),var(--amber));width:0;z-index:20}
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px}
+.nav b{font:800 19px "Bricolage Grotesque",sans-serif;letter-spacing:-.01em}.nav b::after{content:"_";color:var(--cy);animation:bl 1.1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.nav .r{display:flex;align-items:center;gap:6px}
+.nav nav a{margin-left:4px;padding:6px 12px;border-radius:99px;color:var(--mute);text-decoration:none;font-size:15px;transition:.2s}
+.nav nav a:hover,.nav nav a.on{color:var(--ink);background:var(--glow)}
+#th{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;font-size:17px;margin-left:8px;transition:.2s}
+#th:hover{border-color:var(--sig);transform:rotate(25deg)}
+.hero{padding:84px 24px 40px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--panel);font:500 13px "JetBrains Mono",monospace;color:var(--mute);margin-bottom:22px;backdrop-filter:blur(8px)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--cy);box-shadow:0 0 0 0 var(--cy);animation:pu 2s infinite}
+@keyframes pu{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero h1{font-size:clamp(46px,9vw,100px);font-weight:800;letter-spacing:-.035em}
+.hero h1 .w{display:inline-block;margin-right:.22em;background:linear-gradient(100deg,var(--ink) 20%,var(--sig) 55%,var(--cy) 80%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;transform:translateY(40px);filter:blur(10px);animation:wi .9s cubic-bezier(.2,.7,.2,1) forwards,sh 8s linear infinite alternate}
+.hero h1 .w:nth-child(2){animation-delay:.15s,0s}
+@keyframes wi{to{opacity:1;transform:none;filter:none}}@keyframes sh{to{background-position:100% 0}}
+.hero .role{font:500 clamp(19px,2.6vw,27px)/1.35 "Bricolage Grotesque",sans-serif;margin:22px 0 14px;max-width:740px}
+.hero p{max-width:650px;color:var(--mute);margin:0 0 28px}
+.btn{display:inline-block;padding:13px 24px;border-radius:10px;background:linear-gradient(135deg,var(--sig),#4a35d6);color:#fff;text-decoration:none;font-weight:500;margin:0 10px 10px 0;box-shadow:0 8px 22px var(--glow);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px var(--glow)}
+.btn.alt{background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:none;backdrop-filter:blur(8px)}
+.btn.alt:hover{border-color:var(--sig)}
+.glass,.scope,.card,details.proj,.mail{--mx:50%;--my:0%}
+.scope{margin-top:46px;position:relative;overflow:hidden;background:radial-gradient(420px circle at var(--mx) var(--my),var(--glow),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--sh);backdrop-filter:blur(10px)}
+.scope::after{content:"";position:absolute;top:0;bottom:0;width:90px;left:-100px;background:linear-gradient(90deg,transparent,var(--glow),transparent);animation:sw 5.5s linear infinite;pointer-events:none}
+@keyframes sw{to{left:110%}}
+.scope canvas{width:100%;height:250px;display:block}
 .ctl{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:12px;font-size:15px}
 .ctl input{flex:1;min-width:160px;accent-color:var(--sig)}
-.ctl output{font-variant-numeric:tabular-nums;color:var(--mute)}
+.ctl output{font:500 14px "JetBrains Mono",monospace;color:var(--cy)}
 .cap{font-size:14px;color:var(--mute);margin:10px 0 0}
-section{padding:56px 0;border-top:1px solid var(--line)}
-section>.wrap>h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:8px;letter-spacing:-.02em}
-.sub{color:var(--mute);max-width:620px;margin:0 0 28px}
-details.proj{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--dom,var(--sig));border-radius:10px;margin-bottom:14px}
-details.proj summary{cursor:pointer;list-style:none;padding:18px 22px;display:grid;grid-template-columns:1fr auto 36px;gap:2px 16px;align-items:center}
-details.proj summary::-webkit-details-marker{display:none}
-details.proj summary h3{font-size:22px;grid-column:1;text-align:left}
-details.proj summary .when{grid-column:2;grid-row:1;color:var(--amber);font-weight:500;font-size:15px;text-align:right;white-space:nowrap}
-details.proj summary .pitch{grid-column:1/3;color:var(--mute);font-size:15.5px}
-details.proj summary::after{content:"−";grid-column:3;grid-row:1/3;justify-self:end;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--sig);color:var(--sig);display:grid;place-items:center;font:700 22px/1 "Bricolage Grotesque"}
-details.proj:not([open]) summary::after{content:"+"}
-.dom{display:block;font-size:13px;color:var(--dom,var(--sig));font-weight:500;margin-bottom:2px}
-.tools{display:flex;gap:10px;margin:0 0 18px}.tools button{font:inherit;font-size:14px;padding:6px 14px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:14px 0;margin:36px 0 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.mq div{display:flex;gap:34px;width:max-content;animation:mq 38s linear infinite;font:500 14px "JetBrains Mono",monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.mq span::before{content:"◆";color:var(--cy);margin-right:34px;font-size:9px;vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+section{padding:70px 0 40px;position:relative}
+section>.wrap>h2{font-size:clamp(32px,5vw,50px);margin-bottom:10px;letter-spacing:-.025em}
+section>.wrap>h2::before{content:attr(data-n);display:block;font:500 13px "JetBrains Mono",monospace;color:var(--cy);letter-spacing:.14em;margin-bottom:8px}
+.sub{color:var(--mute);max-width:640px;margin:0 0 28px}
+.tools{display:flex;gap:10px;margin:0 0 20px}.tools button{font:inherit;font-size:14px;padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer;transition:.2s}
 .tools button:hover{border-color:var(--sig);color:var(--sig)}
-#bar{position:fixed;top:0;left:0;height:3px;background:var(--amber);width:0;z-index:9}
-.e{--dom:#1b4fe0}.sg{--dom:#c77d00}.v{--dom:#0e8a6b}.l{--dom:#7a4bd1}.a{--dom:#d1456b}
-@media(prefers-color-scheme:dark){.e{--dom:#6f95ff}.sg{--dom:#f2b02e}.v{--dom:#3ed1a8}.l{--dom:#b496f2}.a{--dom:#ff7fa0}}
-@media(max-width:600px){details.proj summary{grid-template-columns:1fr 36px}details.proj summary .when{grid-column:1;grid-row:2;text-align:left}details.proj summary .pitch{grid-column:1;grid-row:3}details.proj summary::after{grid-column:2;grid-row:1}}
-.body{padding:0 22px 22px;border-top:1px solid var(--line)}
-.body h4{font:700 16px "Bricolage Grotesque";margin:18px 0 6px}
-.body ul{margin:0;padding-left:20px}.body li{margin:4px 0}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.tags span{border:1px solid var(--line);border-radius:99px;padding:2px 12px;font-size:14px;color:var(--mute)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
-.card h3{font-size:18px;margin-bottom:8px}.card p{margin:0;color:var(--mute);font-size:15.5px}
-.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--line)}
-.tl li{padding:0 0 26px 22px;position:relative}
-.tl li::before{content:"";position:absolute;left:-7px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--sig)}
-.tl .d{color:var(--amber);font-weight:500;font-size:15px}.tl h3{font-size:20px;margin:2px 0}.tl p{margin:2px 0 0;color:var(--mute)}
-.contact a.big{font:700 clamp(20px,4vw,34px) "Bricolage Grotesque";word-break:break-all}
-footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(--line)}
-@media(max-width:600px){.nav nav a{margin-left:12px;font-size:14px}.nav nav a.hide{display:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.cts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-.ct{display:flex;align-items:center;gap:16px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:var(--ink);text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s}
-.ct svg{flex:none;color:var(--sig)}.ct span{min-width:0}.ct b{display:block;font:700 18px "Bricolage Grotesque",sans-serif}
-.ct small{display:block;color:var(--mute);font-size:14px;overflow-wrap:anywhere}
-.ct:hover{transform:translateY(-3px);border-color:var(--sig);box-shadow:0 8px 22px rgba(27,79,224,.15)}
-@media(prefers-reduced-motion:reduce){.ct{transition:none}.ct:hover{transform:none}}
-.mail{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:26px 28px;border-radius:16px;color:#fff;background:linear-gradient(135deg,#1b4fe0,#0d2a7a 70%);box-shadow:0 14px 34px rgba(27,79,224,.28);margin-bottom:18px}
-.mi{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none}
-.mt{flex:1;min-width:220px}.mt small{display:block;opacity:.8;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+details.proj{position:relative;background:radial-gradient(520px circle at var(--mx) var(--my),var(--glow),transparent 55%),var(--panel);border:1px solid var(--line);border-left:5px solid var(--dom,var(--sig));border-radius:14px;margin-bottom:16px;box-shadow:var(--sh);backdrop-filter:blur(10px);transition:transform .25s,border-color .25s}
+details.proj:hover{transform:translateY(-2px);border-color:var(--dom,var(--sig))}
+details.proj summary{cursor:pointer;list-style:none;padding:20px 24px;display:grid;grid-template-columns:1fr auto 36px;gap:3px 16px;align-items:center}
+details.proj summary::-webkit-details-marker{display:none}
+details.proj summary h3{font-size:23px;grid-column:1;text-align:left}
+details.proj summary .when{grid-column:2;grid-row:1;font:500 13.5px "JetBrains Mono",monospace;color:var(--amber);text-align:right;white-space:nowrap;padding:4px 12px;border:1px solid var(--line);border-radius:99px;background:var(--panel)}
+details.proj summary .pitch{grid-column:1/3;color:var(--mute);font-size:15.5px}
+details.proj summary::after{content:"−";grid-column:3;grid-row:1/3;justify-self:end;width:34px;height:34px;border-radius:50%;border:1.5px solid var(--sig);color:var(--sig);display:grid;place-items:center;font:700 22px/1 "Bricolage Grotesque";transition:.25s}
+details.proj summary:hover::after{background:var(--sig);color:#fff;transform:rotate(90deg)}
+details.proj:not([open]) summary::after{content:"+"}
+.dom{display:block;font:500 12px "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--dom,var(--sig));margin-bottom:4px}
+.body{padding:0 24px 24px;border-top:1px solid var(--line);animation:op .45s ease}
+@keyframes op{from{opacity:0;transform:translateY(-8px)}}
+.body ul{margin:16px 0 0;padding-left:0;list-style:none}
+.body li{position:relative;padding-left:22px;margin:8px 0}
+.body li::before{content:"";position:absolute;left:2px;top:.72em;width:8px;height:8px;border-radius:2px;background:var(--dom,var(--sig));transform:rotate(45deg) scale(.8)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tags span{border:1px solid var(--line);border-radius:99px;padding:3px 13px;font:500 13px "JetBrains Mono",monospace;color:var(--mute);background:var(--panel);transition:.2s}
+.tags span:hover{color:var(--ink);border-color:var(--dom,var(--sig));transform:translateY(-2px)}
+.e{--dom:#4f7dff}.sg{--dom:#e39a1b}.v{--dom:#14b88f}.l{--dom:#9266ee}.a{--dom:#e24b78}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.card{position:relative;background:radial-gradient(360px circle at var(--mx) var(--my),var(--glow),transparent 60%),var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--sh);backdrop-filter:blur(10px);transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);border-color:var(--sig)}
+.card h3{font-size:19px;margin-bottom:8px}.card p{margin:0;color:var(--mute);font-size:15.5px}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid transparent;border-image:linear-gradient(var(--sig),var(--cy),transparent) 1}
+.tl li{padding:0 0 30px 26px;position:relative}
+.tl li::before{content:"";position:absolute;left:-8px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--sig);box-shadow:0 0 0 0 var(--sig);animation:pu 2.6s infinite}
+.tl .d{font:500 13.5px "JetBrains Mono",monospace;color:var(--amber)}.tl h3{font-size:21px;margin:3px 0}.tl p{margin:2px 0 0;color:var(--mute)}
+.mail{position:relative;display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:28px 30px;border-radius:18px;color:#fff;background:radial-gradient(500px circle at var(--mx) var(--my),rgba(255,255,255,.18),transparent 55%),linear-gradient(135deg,#2250e6,#4a35d6 55%,#0d2a7a);box-shadow:0 18px 44px rgba(34,80,230,.35);margin-bottom:18px;overflow:hidden}
+.mi{width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-6px)}}
+.mt{flex:1;min-width:220px}.mt small{display:block;opacity:.8;letter-spacing:.1em;text-transform:uppercase;font:500 12px "JetBrains Mono",monospace}
 .mt a{color:#fff;font:700 clamp(18px,3.4vw,28px) "Bricolage Grotesque",sans-serif;overflow-wrap:anywhere;text-decoration:none;border-bottom:2px solid rgba(255,255,255,.4)}
 .mt a:hover{border-color:#fff}
-.mail button{font:inherit;font-weight:500;padding:10px 18px;border-radius:99px;border:1.5px solid #fff;background:transparent;color:#fff;cursor:pointer}
+.mail button{font:inherit;font-weight:500;padding:10px 18px;border-radius:99px;border:1.5px solid #fff;background:transparent;color:#fff;cursor:pointer;transition:.2s}
 .mail button:hover{background:#fff;color:#0d2a7a}
 .rowb{display:flex;flex-wrap:wrap;gap:12px}.rowb .btn{margin:0}
-.btn2{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:6px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:500;transition:background .15s,color .15s}
-.btn2:hover{background:var(--ink);color:var(--bg)}
+.btn2{display:inline-flex;align-items:center;gap:10px;padding:13px 24px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none;font-weight:500;backdrop-filter:blur(8px);transition:.2s}
+.btn2:hover{background:var(--ink);color:var(--bg);transform:translateY(-3px)}
+footer{padding:30px 0;color:var(--mute);font:400 13px "JetBrains Mono",monospace;border-top:1px solid var(--line);margin-top:50px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(max-width:640px){.nav nav a.hide{display:none}.nav nav a{padding:6px 8px}details.proj summary{grid-template-columns:1fr 36px}details.proj summary .when{grid-column:1;grid-row:2;justify-self:start;text-align:left}details.proj summary .pitch{grid-column:1;grid-row:3}details.proj summary::after{grid-column:2;grid-row:1}.hero{padding-top:56px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}.hero h1 .w{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
+<canvas id="bg" aria-hidden="true"></canvas>
 <div id="bar"></div><header class="nav"><div class="wrap"><b>H. Shkeir</b>
-<nav><a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#parcours" class="hide">Parcours</a><a href="#contact">Contact</a></nav></div></header>
+<div class="r"><nav><a href="#projets">Projets</a><a href="#competences">Compétences</a><a href="#parcours" class="hide">Parcours</a><a href="#contact">Contact</a></nav><button id="th" type="button" aria-label="Changer de thème">◐</button></div></div></header>
 
 <main>
 <div class="wrap hero" id="top">
+<span class="pill"><i></i>Recherche de stage · 3-4 mois · systèmes embarqués</span>
 <h1>Hussein Shkeir</h1>
 <p class="role">Ingénieur en électronique et systèmes embarqués, avec une formation complémentaire en télécommunications.</p>
 <p>Double diplôme d'ingénieur à Polytech Paris-Saclay (électronique et systèmes embarqués) et en télécommunications à l'Université Libanaise. Je recherche un stage de 3 à 4 mois en systèmes embarqués.</p>
@@ -103,8 +130,9 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 </div>
 </div>
 
+<div class="mq" aria-hidden="true"><div><span>C / C++</span><span>VHDL</span><span>FPGA</span><span>Nios II</span><span>Avalon</span><span>UART / RS232</span><span>I²C</span><span>Interruptions</span><span>CAN / CNA</span><span>MATLAB</span><span>OpenCV</span><span>Raspberry Pi</span><span>Python</span><span>Java 21</span><span>Docker</span><span>SQL</span><span>React.js</span><span>Laravel</span><span>C / C++</span><span>VHDL</span><span>FPGA</span><span>Nios II</span><span>Avalon</span><span>UART / RS232</span><span>I²C</span><span>Interruptions</span><span>CAN / CNA</span><span>MATLAB</span><span>OpenCV</span><span>Raspberry Pi</span><span>Python</span><span>Java 21</span><span>Docker</span><span>SQL</span><span>React.js</span><span>Laravel</span></div></div>
 <section id="projets"><div class="wrap">
-<h2>Projets</h2>
+<h2 data-n="01 /">Projets</h2>
 <p class="sub">Systèmes embarqués, traitement du signal, vision, logiciel et IA. Utilisez le bouton − pour réduire un projet.</p>
 
 <div class="tools"><button id="ca" type="button">Tout réduire</button><button id="ea" type="button">Tout développer</button></div>
@@ -131,7 +159,7 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 </div></section>
 
 <section id="competences"><div class="wrap">
-<h2>Compétences</h2><p class="sub">Ce que j'ai utilisé dans mes projets.</p>
+<h2 data-n="02 /">Compétences</h2><p class="sub">Ce que j'ai utilisé dans mes projets.</p>
 <div class="grid">
 <div class="card"><h3>Systèmes embarqués</h3><p>C/C++, interruptions, timers, UART/RS232, I²C, programmation concurrente, accès aux registres et à la mémoire.</p></div>
 <div class="card"><h3>FPGA et conception numérique</h3><p>VHDL, Nios II, bus Avalon, Qsys, Quartus II, machines à états finis, PIO, CAN et CNA.</p></div>
@@ -142,7 +170,7 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 </div></div></section>
 
 <section id="parcours"><div class="wrap">
-<h2>Parcours</h2><p class="sub">Formation d'ingénieur et expérience professionnelle.</p>
+<h2 data-n="03 /">Parcours</h2><p class="sub">Formation d'ingénieur et expérience professionnelle.</p>
 <ul class="tl">
 <li><span class="d">En cours</span><h3>Cycle ingénieur, Électronique et systèmes embarqués</h3><p>Polytech Paris-Saclay, Orsay. Niveau Bac+4.</p></li>
 <li><span class="d">Juillet – septembre 2025</span><h3>Stagiaire développeur full-stack</h3><p>Integrated Digital Systems (IDS).</p></li>
@@ -150,13 +178,13 @@ footer{padding:28px 0;color:var(--mute);font-size:14px;border-top:1px solid var(
 </ul></div></section>
 
 <section id="contact" class="contact"><div class="wrap">
-<h2>Travaillons ensemble</h2>
+<h2 data-n="04 /">Travaillons ensemble</h2>
 <p class="sub">Ce serait un plaisir et un honneur d'échanger avec vous. Je recherche un stage de 3 à 4 mois en systèmes embarqués.</p>
 <div class="mail"><div class="mi"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div class="mt"><small>Écrivez-moi</small><a href="mailto:hussein.shkeir@universite-paris-saclay.fr">hussein.shkeir@universite-paris-saclay.fr</a></div><button type="button" id="cp">Copier l'adresse</button></div>
 <div class="rowb"><a class="btn2" href="https://github.com/HusseinChouckair" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.921.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" fill="currentColor"/></svg>GitHub</a><a class="btn2" href="https://www.linkedin.com/in/hussein-shkeir-437506357/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z" fill="currentColor"/></svg>LinkedIn</a><a class="btn cvlink" href="#" role="button">Télécharger mon CV</a></div>
 </div></section>
 </main>
-<footer><div class="wrap">© 2026 Hussein Shkeir</div></footer>
+<footer><div class="wrap">© 2026 Hussein Shkeir · Site mis à jour le 27 octobre 2026</div></footer>
 
 <script>
 const c=document.getElementById('cv'),x=c.getContext('2d'),s=document.getElementById('n'),o=document.getElementById('o');
@@ -187,6 +215,26 @@ const url=URL.createObjectURL(new Blob([u],{type:'application/pdf'}));const a=do
 setTimeout(()=>URL.revokeObjectURL(url),60000)}catch(x){location.href='mailto:hussein.shkeir@universite-paris-saclay.fr?subject=Demande de CV'}}
 document.querySelectorAll('.cvlink').forEach(a=>a.addEventListener('click',dlCV));
 const cp=document.getElementById('cp');cp.onclick=async()=>{try{await navigator.clipboard.writeText('hussein.shkeir@universite-paris-saclay.fr');cp.textContent='Adresse copiée ✓'}catch(x){cp.textContent='Copiez depuis le lien'}setTimeout(()=>cp.textContent="Copier l'adresse",2200)};
+
+(function(){
+const R=matchMedia('(prefers-reduced-motion:reduce)').matches,root=document.documentElement;
+document.querySelectorAll('.hero h1').forEach(h=>{h.innerHTML=h.textContent.trim().split(' ').map(w=>'<span class="w">'+w+'</span>').join('')});
+const th=document.getElementById('th');th.onclick=()=>{const t=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('t',t)}catch(e){}if(typeof draw==='function')draw()};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.sub,section>.wrap>h2,.proj,.card,.tl li,.mail,.rowb,.tools').forEach((el,i)=>{el.classList.add('rv');el.style.transitionDelay=(el.matches('.card,.tl li')?(i%4)*70:0)+'ms';io.observe(el)});
+const links=[...document.querySelectorAll('.nav nav a')],secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach((a,i)=>a.classList.toggle('on',secs[i]===e.target))}),{rootMargin:'-45% 0px -50% 0px'});
+secs.forEach(x=>x&&so.observe(x));
+document.addEventListener('pointermove',e=>{const t=e.target.closest&&e.target.closest('.scope,.card,details.proj,.mail');if(t){const r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px')}},{passive:true});
+const cv=document.getElementById('bg'),g=cv.getContext('2d');let W,H,P=[],mx=-999,my=-999;
+function rs(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;g.setTransform(d,0,0,d,0,0);const n=Math.round(Math.min(70,W*H/20000));P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
+function cl(v){return getComputedStyle(root).getPropertyValue(v).trim()}
+function fr(){g.clearRect(0,0,W,H);const c1=cl('--sig'),c2=cl('--cy');
+for(const p of P){if(!R){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;const dx=p.x-mx,dy=p.y-my,d=dx*dx+dy*dy;if(d<14000){p.x+=dx*.0016;p.y+=dy*.0016}}}
+g.lineWidth=1;for(let i=0;i<P.length;i++){for(let j=i+1;j<P.length;j++){const a=P[i],b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<130){g.globalAlpha=(1-d/130)*.35;g.strokeStyle=c1;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(a.x,b.y);g.lineTo(b.x,b.y);g.stroke()}}}
+g.globalAlpha=.7;g.fillStyle=c2;for(const p of P){g.fillRect(p.x-1.5,p.y-1.5,3,3)}g.globalAlpha=1;if(!R)requestAnimationFrame(fr)}
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});addEventListener('resize',()=>{rs();if(R)fr()});rs();fr();
+})();
 </script>
 </body>
 </html>
